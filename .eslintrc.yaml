@@ -1,0 +1,9 @@
+extends:
+  - '@antfu'
+  - '@unocss'
+
+rules:
+  no-console: [warn, {allow: [warn, error, debug, groupCollapsed, groupEnd]}]
+  vue/singleline-html-element-content-newline: off
+  # '@unocss/order': off
+  # Expected 1 line break after opening tag (`<h3>`), but no line breaks found.eslint

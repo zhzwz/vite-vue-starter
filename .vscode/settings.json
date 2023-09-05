@@ -1,0 +1,25 @@
+{
+  // 保存时自动使用 ESLint 配置修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // 在 VSCode 中自动使用 ESLint 验证的文件 ID 列表
+  "eslint.enable": true,
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "json5",
+    "jsonc",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "yaml"
+  ],
+  // 从 VSCode 导入建议中排除 vue-router
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "vue-router"
+  ]
+}

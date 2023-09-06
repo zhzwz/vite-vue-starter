@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <RouterView />
+  <TsxButton text="1" />
 </template>

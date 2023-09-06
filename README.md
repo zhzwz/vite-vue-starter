@@ -9,14 +9,15 @@
 - UnoCSS
 - TypeScript
 
-## Vite 插件
+## 特性
 
-- [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import)
-- [unplugin-vue-router](https://github.com/posva/unplugin-vue-router)
-- [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
+- 支持 TS 以及 TSX
+- 按需引入
 
-<!--
-"@iconify-json/carbon": "^1.1.18",
-"@intlify/unplugin-vue-i18n": "^0.12.2",
-"@types/markdown-it-link-attributes": "^3.0.1",
--->
+
+[unplugin-auto-import]: https://github.com/unplugin/unplugin-auto-import
+[unplugin-vue-router]: https://github.com/posva/unplugin-vue-router
+[unplugin-vue-components]: https://github.com/unplugin/unplugin-vue-components
+[unplugin-vue-cssvars]: https://github.com/unplugin/unplugin-vue-cssvars
+[unplugin-imagemin]: https://github.com/unplugin/unplugin-imagemin
+[unplugin-vue-components]: https://github.com/unplugin/unplugin-vue-components

@@ -1,6 +1,7 @@
 {
   "name": "vite-vue-starter",
   "version": "0.1.0",
+  "type": "module",
   "privite": true,
   "scripts": {
     "dev": "vite --base=/ --host --port=65432 --strict-port --open --debug --filter proxy",
@@ -16,15 +17,22 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.0",
+    "@iconify/json": "^2.2.111",
     "@types/node": "^20.5.9",
     "@unocss/eslint-config": "^0.55.7",
     "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/tsconfig": "^0.4.0",
     "eslint": "^8.48.0",
     "unocss": "^0.55.7",
     "unplugin-auto-import": "^0.16.6",
+    "unplugin-icons": "^0.17.0",
+    "unplugin-imagemin": "^0.5.5",
+    "unplugin-macros": "^0.8.3",
     "unplugin-vue-components": "^0.25.2",
+    "unplugin-vue-cssvars": "^2.0.0",
     "unplugin-vue-router": "^0.6.4",
+    "unplugin-vue-tsx-auto-props": "^0.4.1",
     "vite": "^4.4.9"
   }
 }

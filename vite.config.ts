@@ -12,6 +12,13 @@ import iconsResolver from 'unplugin-icons/resolver'
 import { viteVueCSSVars as cssVars } from 'unplugin-vue-cssvars'
 import unocss from 'unocss/vite'
 import imageMin from 'unplugin-imagemin/vite'
+import markdown from 'unplugin-vue-markdown/vite'
+import mis from 'markdown-it-shiki'
+import mila from 'markdown-it-link-attributes'
+import mia from 'markdown-it-anchor'
+import mimt from 'markdown-it-multimd-table'
+
+// import  from ''
 
 // import macros from 'unplugin-macros/vite'
 
@@ -24,14 +31,60 @@ export default defineConfig(() => {
     plugins: [
       // https://github.com/posva/unplugin-vue-router/tree/main#configuration
       router({
-        routesFolder: 'pages',
-        extensions: ['.vue', '.page.vue', '.page.md'],
+        routesFolder: [
+          'pages',
+          { src: 'posts', path: 'blog/' },
+        ],
+        extensions: ['.vue', '.page.vue', '.md', '.page.md'],
         exclude: ['**/*.component.vue'],
         routeBlockLang: 'yaml',
         dts: './types/router.d.ts',
         logs: true,
       }),
-      vue(),
+      vue({
+        include: [/\.vue$/, /\.md$/], // allows vue to compile markdown files
+      }),
+      // https://github.com/unplugin/unplugin-vue-markdown#options
+      markdown({
+        // https://markdown-it.github.io/markdown-it/
+        markdownItOptions: {
+          html: true,
+          linkify: true,
+          typographer: true,
+        },
+        // headEnabled: true,
+        markdownItSetup(markdownIt) {
+          // https://github.com/antfu/markdown-it-shiki#usage
+          // https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes
+          markdownIt.use(mis, {
+            highlightLines: true,
+            theme: 'dark-plus',
+          })
+          markdownIt.use(mila, {
+            matcher: (link: string) => /^https?:\/\//.test(link),
+            attrs: { target: '_blank', rel: 'noopener' },
+          })
+          markdownIt.use(mia, {
+            permalink: mia.permalink.headerLink({
+              safariReaderFix: true,
+            }),
+          })
+          markdownIt.use(mimt, {
+            multiline: true,
+            rowspan: true,
+            headerless: true,
+            multibody: true,
+            aotolabel: true,
+          })
+        },
+        // markdownItSetup(markdownIt) {
+        //   import MarkdownItAnchor from 'markdown-it-anchor'
+        //   import MarkdownItPrism from 'markdown-it-prism'
+        //   markdownIt.use(MarkdownItAnchor)
+        //   markdownIt.use(MarkdownItPrism) //
+        // },
+        wrapperClasses: 'markdown',
+      }),
       // https://github.com/unplugin/unplugin-vue-jsx#configuration
       jsx({}), // { include: [/\.tsx?$/], sourceMap: true, version: 3 }
       // https://github.com/unplugin/unplugin-vue-tsx-auto-props
@@ -52,8 +105,8 @@ export default defineConfig(() => {
       // https://github.com/unplugin/unplugin-vue-components#configuration
       components({
         dirs: ['components'], deep: true, version: 3,
-        include: [/\.tsx?$/, /\.vue$/, /\.vue\?vue/],
-        extensions: ['tsx', 'vue'],
+        include: [/\.tsx?$/, /\.md/, /\.vue$/, /\.vue\?vue/],
+        extensions: ['tsx', 'md', 'vue'],
         resolvers: [
           iconsResolver(),
           (ComponentName) => {
@@ -80,5 +133,6 @@ export default defineConfig(() => {
       // https://github.com/unplugin/unplugin-macros/tree/main#usage
       // macros(),
     ],
+    // assetsInclude: ['**/*.md'],
   }
 })

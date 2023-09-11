@@ -1,9 +1,61 @@
 @import "@zhzwz/normalize.css";
 
 #app {
-  width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  --uno: w-full max-w-full;
+}
+
+
+.markdown {
+  --uno: prose prose-stone dark:prose-invert m-auto;
+}
+.markdown a.header-anchor {
+  text-decoration: none;
+  --uno: inline-block hover:translate-x-0.5 hover:scale-102 duration-256;
+}
+.markdown pre.shiki {
+  --scrollbar-size: 0.4rem;
+  --scrollbar-color: var(--un-prose-body);
+}
+.markdown pre.shiki::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+.markdown pre.shiki::-webkit-scrollbar-track-piece {
+  background: rgba(0, 0, 0, 0.1);
+}
+.markdown pre.shiki::-webkit-scrollbar-thumb {
+  border-radius: var(--scrollbar-size);
+  background-color: var(--scrollbar-color);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0) 2rem,
+    rgba(255, 255, 255, 0.5) 2rem,
+    rgba(255, 255, 255, 0.5) 4rem
+  );
+}
+.markdown pre.shiki::-webkit-scrollbar-thumb:vertical {
+  height: var(--scrollbar-size);
+}
+.markdown pre.shiki::-webkit-scrollbar-thumb:horizontal {
+  width: var(--scrollbar-size);
+}
+
+.markdown pre.shiki code {
+  /* Line Numbers: https://github.com/shikijs/shiki/issues/3#issuecomment-830564854 */
+  /* <code style="--start-line: 13;"></code> */
+  counter-reset: step;
+  counter-increment: step calc(var(--start-line, 1) - 1);
+  --uno: flex flex-col gap-0.5px;
+}
+.markdown pre.shiki code span.line {
+  --uno: block w-fit;
+}
+.markdown pre.shiki code span.line::before {
+  content: counter(step);
+  counter-increment: step;
+  --uno: inline-block w-2em mr-4 text-right text-stone-500;
+}
+.markdown pre.shiki code span.line.highlighted {
+  --uno: bg-green/25;
 }

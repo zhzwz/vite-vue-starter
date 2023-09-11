@@ -18,8 +18,6 @@ const routes = router.getRoutes()
       <img src="/vite.svg" alt="vite">
     </div>
     <div class="flex gap-4">
-      <RouterLink to="/home" class="btn btn-primary">home</RouterLink>
-
       <template v-for="{ path, name } in routes" :key="path">
         <RouterLink :to="path" class="btn btn-primary" v-text="name" />
       </template>

@@ -1,19 +1,20 @@
 # Vite Vue Starter
 
-## 主要技术
+## Usage
 
-- Vite
-- Vue
-- Vue Router
-- Pinia
-- UnoCSS
-- TypeScript
+- npm
 
-## 特性
+```shell
+npx degit zhzwz/vite-vue-starter ProjectName
+```
 
-- 支持 TS 以及 TSX
-- 按需引入
+- pnpm
 
+```shell
+mkdir ProjectName
+cd ProjectName
+pnpm dlx degit zhzwz/vite-vue-starter . --force
+```
 
 [unplugin-auto-import]: https://github.com/unplugin/unplugin-auto-import
 [unplugin-vue-router]: https://github.com/posva/unplugin-vue-router

@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
       path: decodeURIComponent(to.path),
       query: to.query,
       params: to.params,
+      replace: true,
     })
   }
   next()

@@ -18,8 +18,6 @@ import mila from 'markdown-it-link-attributes'
 import mia from 'markdown-it-anchor'
 import mimt from 'markdown-it-multimd-table'
 
-// import  from ''
-
 // import macros from 'unplugin-macros/vite'
 
 // https://vitejs.dev/config/

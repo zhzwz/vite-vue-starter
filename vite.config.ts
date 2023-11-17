@@ -17,8 +17,8 @@ import mis from 'markdown-it-shiki'
 import mila from 'markdown-it-link-attributes'
 import mia from 'markdown-it-anchor'
 import mimt from 'markdown-it-multimd-table'
-
-// import macros from 'unplugin-macros/vite'
+import chalk from 'chalk'
+import macros from 'unplugin-macros/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -39,9 +39,11 @@ export default defineConfig(() => {
         dts: './types/router.d.ts',
         logs: true,
       }),
+
       vue({
         include: [/\.vue$/, /\.md$/], // allows vue to compile markdown files
       }),
+
       // https://github.com/unplugin/unplugin-vue-markdown#options
       markdown({
         // https://markdown-it.github.io/markdown-it/
@@ -79,27 +81,34 @@ export default defineConfig(() => {
         //   import MarkdownItAnchor from 'markdown-it-anchor'
         //   import MarkdownItPrism from 'markdown-it-prism'
         //   markdownIt.use(MarkdownItAnchor)
-        //   markdownIt.use(MarkdownItPrism) //
+        //   markdownIt.use(MarkdownItPrism)
         // },
         wrapperClasses: 'markdown',
       }),
+
       // https://github.com/unplugin/unplugin-vue-jsx#configuration
-      jsx({}), // { include: [/\.tsx?$/], sourceMap: true, version: 3 }
+      jsx(), // { include: [/\.tsx?$/], sourceMap: true, version: 3 }
+
       // https://github.com/unplugin/unplugin-vue-tsx-auto-props
       tsxProps(),
+
       // https://github.com/unplugin/unplugin-auto-import#configuration
       imports({
         dirs: ['components', 'composables'],
         include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
         imports: [
-          'vue', 'pinia', routerImports,
+          'vue',
+          'pinia',
+          routerImports,
           {
             'vue-router/auto': ['RouterView', 'RouterLink', 'createRouter', 'createWebHistory', 'setupDataFetchingGuard'],
           },
         ],
+        // auto import in vue sfc <template>
         vueTemplate: true,
         dts: './types/imports.d.ts',
       }),
+
       // https://github.com/unplugin/unplugin-vue-components#configuration
       components({
         dirs: ['components'], deep: true, version: 3,
@@ -108,15 +117,17 @@ export default defineConfig(() => {
         resolvers: [
           iconsResolver(),
           (ComponentName) => {
-            console.debug(ComponentName)
+            console.debug(chalk.cyan('Component:'), chalk.green(ComponentName))
             // if (ComponentName === 'RouterView')
             //   return { name: ComponentName, from: 'vue-router/auto' }
           },
         ],
         dts: './types/components.d.ts',
       }),
+
       // https://github.com/unplugin/unplugin-icons
       icons(),
+
       // https://github.com/unplugin/unplugin-vue-cssvars
       cssVars({
         include: [/.vue/],
@@ -124,12 +135,23 @@ export default defineConfig(() => {
         alias: { '@': fileURLToPath(new URL('.', import.meta.url)) },
         server: false,
       }),
+
       // unocss.config.ts
       unocss(),
+
       // https://github.com/unplugin/unplugin-imagemin#support-vite-and-rollup
       imageMin(),
-      // https://github.com/unplugin/unplugin-macros/tree/main#usage
-      // macros(),
+
+      /**
+       * @see https://github.com/unplugin/unplugin-macros/tree/main#usage
+       * @example
+       * [macros.js]
+       *   export const buildTime = Date.now();
+       * [index.js]
+       *   import { buildTime } from './macros' assert { type: 'macro' };
+       *   // the `buildTime` will be replaced with the timestamp at build time.
+       */
+      macros(),
     ],
     // assetsInclude: ['**/*.md'],
   }

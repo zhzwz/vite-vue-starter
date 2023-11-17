@@ -22,7 +22,7 @@ const { count, increment } = useCounter()
     <div class="flex flex-col gap-2">
       <div>Routes:</div>
       <template v-for="{ path, name } in routes" :key="path">
-        <RouterLink :to="path" class="btn btn-primary" v-text="name" />
+        <RouterLink :to="path" class="btn btn-primary">{{ name }}</RouterLink>
       </template>
     </div>
 

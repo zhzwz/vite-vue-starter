@@ -8,6 +8,6 @@ const _color = ref('rgb(248, 113, 113)') // color-red
 
 <style scoped>
 .cssvars {
-  color: v-bind-m(_color);
+  color: v-bind(_color);
 }
 </style>

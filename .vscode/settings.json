@@ -1,23 +1,47 @@
 {
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.maxTokenizationLineLength": 1024,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "eslint.enable": true,
+  // Enable the ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
   // 保存时自动使用 ESLint 配置修复
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
+  ],
   // 在 VSCode 中自动使用 ESLint 验证的文件 ID 列表
-  "eslint.enable": true,
   "eslint.validate": [
-    "html",
     "javascript",
     "javascriptreact",
-    "json",
-    "json5",
-    "jsonc",
-    "markdown",
     "typescript",
     "typescriptreact",
     "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
     "yaml"
   ],
+
   // 从 VSCode 导入建议中排除 vue-router
   "typescript.preferences.autoImportFileExcludePatterns": [
     "vue-router"

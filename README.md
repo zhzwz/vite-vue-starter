@@ -1,19 +1,17 @@
 # Vite Vue Starter
 
+My starter template for Vue & Vite app.
+
+- Vue 3
+- Vite 5
+
 ## Usage
 
-- npm
-
-```shell
-npx degit zhzwz/vite-vue-starter ProjectName
-```
-
-- pnpm
-
-```shell
-mkdir ProjectName
-cd ProjectName
+```sh
 pnpm dlx degit zhzwz/vite-vue-starter . --force
+corepack enable pnpm
+pnpm install
+pnpm dev
 ```
 
 [unplugin-auto-import]: https://github.com/unplugin/unplugin-auto-import

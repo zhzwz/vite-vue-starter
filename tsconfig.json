@@ -1,15 +1,15 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ],
   "include": [
     "./**/*.ts",
     "./**/*.tsx",
     "./**/*.vue",
     "./types/**/*.d.ts",
     "./index.tsx"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
   ]
 }
